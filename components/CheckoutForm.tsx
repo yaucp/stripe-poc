@@ -176,7 +176,7 @@ const CheckoutForm = ({
       <PaymentElement options={paymentElementOptions} />
       <input
         type="submit"
-        // disabled={isLoading || !stripe || !elements}
+        disabled={isLoading || !stripe || !elements}
         className="border border-gray-600 border-2 rounded"
         id="submit"
         value="Pay"
