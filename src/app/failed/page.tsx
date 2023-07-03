@@ -1,4 +1,4 @@
-export default function Success() {
+export default function Failed() {
   return (
     <main>
       <div className="p-4">

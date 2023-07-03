@@ -1,8 +1,8 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import getStripe from "@/helpers/getStripe";
 import { Stripe } from "@stripe/stripe-js";
+import getClientStripePromise from "@lib/getClientStripe";
 
 export default async function Success() {
   const params = useSearchParams();
@@ -42,23 +42,24 @@ export default async function Success() {
     });
   }, [stripe]);
 
+
   useEffect(() => {
     if (session_id) {
-      fetch(`/api/success?session_id=${session_id}`)
+      fetch(`/api/checkout_session?session_id=${session_id}`)
         .then((res) => res.json())
         .then((json) => {
-          setData(json.customer_details.name);
-          console.log(json.customer_details.name);
+          setData(json.customer_details.email);
+          console.log(JSON.stringify(json.customer_details));
         });
     }
   }, []);
 
-  stripe = await getStripe();
+  stripe = await getClientStripePromise();
   return (
     <main>
       <div className="p-4">
         <h1>Landing page!</h1>
-        <h2>{session_id && <span>Simple Checkout Success! Your name is {data}</span>}</h2>
+        <h2>{session_id && <span>Simple Checkout Success! Your details are {data}</span>}</h2>
       </div>
     </main>
   );
