@@ -16,7 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script src="https://js.stripe.com/v3/"></Script>
       <body>{children}</body>
     </html>
   );
