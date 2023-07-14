@@ -9,7 +9,7 @@ export default function Home() {
 
   function simpleCheckout() {
     // We create a checkout session (with POST!) in BE, retrieves the url page for checkout and redirects the page to the url
-    fetch('/api/checkout_session', {
+    fetch('/api/checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

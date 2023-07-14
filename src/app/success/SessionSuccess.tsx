@@ -6,7 +6,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SessionSuccess({session_id} : {session_id: string}) {
     const [customerDetails, setCustomerDetails] = useState({});
-    const { data, error, isLoading } = useSWRImmutable(`/api/checkout_session?session_id=${session_id}`, fetcher)
+    const { data, error, isLoading } = useSWRImmutable(`/api/checkout-session?session_id=${session_id}`, fetcher)
 
     console.log(data, isLoading)
     useEffect(() => {
