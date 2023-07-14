@@ -143,24 +143,30 @@ const CheckoutForm = ({
             <div className="ml-auto">Price is {price / 100}</div>
             <br />
             <br />
-            Dogs Name:{' '}
-            <input
-                className="border border-gray-600 border-2 rounded ml-auto p-2"
-                type="text"
-            />
-            <br />
-            Upload Image:{' '}
-            <input type="file" name="myImage" accept="image/png, image/jpeg" />
-            <br />
-            <button
-                type="button"
-                className="border border-gray-600 border-2 rounded ml-auto p-2"
-                onClick={validateDog}
-                id="dogDetails"
-            >
-                Validated dog stuff
-            </button>
-            <br />
+            <div className="rounded border border-2 border-black my-1 p-2">
+                This section allows developers to add whatever they want to put in this same checkout page.
+                Be creative!
+                <br/>
+                In this example, we assume we need the client to upload their dog&apos;s picture in order to proceed.<br/>
+                Dogs Name:
+                <input
+                    className="border border-gray-600 border-2 rounded ml-auto p-2"
+                    type="text"
+                />
+                <br/>
+                Upload Image:{' '}
+                <input type="file" name="myImage" accept="image/png, image/jpeg" />
+                <br />
+                <button
+                    type="button"
+                    className="border border-gray-600 border-2 rounded ml-auto p-2"
+                    onClick={validateDog}
+                    id="dogDetails"
+                >
+                    Validate dog stuff
+                </button><br/>
+                This button should NOT exist in prod as it is used to simulate the user has actually filled in what you want from them....
+            </div>
             <button
                 type="button"
                 className="border border-gray-600 border-2 rounded ml-auto p-2"
