@@ -1,8 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+The purpose is to provide a brief look into how stripe checkout session and payment intent/payment elements works.
+
 ## Getting Started
 
-First, run the development server:
+### Get Stripe API Info
+
+Before starting the development server, please create a stripe account and obtain your stripe api public and secret key. In this repo, I have attached `.env.example` for you to take reference of what to include in the environment variables.
+
+Rename `.env.example` to `.env.local` and put your API test public and secret from your stripe's dashboard. If you are changing your base url, please update it as well.
+
+This repo also demostrates a VERY BASIC webhook. If you are not using webhook secret, ignore it. See [how to create webhook secret here](https://stripe.com/docs/webhooks/signatures)
+
+### Run the development server
 
 ```bash
 npm run dev
@@ -14,21 +24,8 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/route.ts`. The page auto-updates as you edit the file.
+## Basic Walkthrough
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The API is designed to be RESTful for clearer understanding.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Checkout session is used only when you require a low code solution and do not mind using Stripe's own prebuilt checkout page. It only requires the developer to create the checkout session and send back the prebuilt checkout's page url to the client so that the client could redirect to it directly. Stripe handles the payment process by itself. After payment confirmed/succeeded, it would redirect the user to the url that you provided when you created the checkout session. You can then use the client side SDK to obtain relevant info and use webhook to properly update your DB.
