@@ -53,10 +53,12 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const sessionId = searchParams.get('session_id')
+    console.log("obtained session id", sessionId)
     if (sessionId === null) {
         return new NextResponse('no session id huhhhhh', { status: 400 })
     }
     const session = await stripe.checkout.sessions.retrieve(sessionId)
+    console.log("received response")
     return NextResponse.json(session)
 }
 
