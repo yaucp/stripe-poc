@@ -29,14 +29,20 @@ export async function POST(request: Request) {
         return a + b
       })
 
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount,
-    currency: 'hkd',
-    automatic_payment_methods: { enabled: true },
-    description: `${customerId}-Welcome to buy something I guess....`,
-    metadata: { customerId }
-  })
-  // Save payment intent in DB
+  let paymentIntent
+  try {
+     paymentIntent = await stripe.paymentIntents.create({
+      amount: totalAmount,
+      currency: 'hkd',
+      automatic_payment_methods: { enabled: true },
+      description: `${customerId}-Welcome to buy something I guess....`,
+      metadata: { customerId }
+    })
+    // Save payment intent in DB
+  } catch (e) {
+    console.log(e)
+    return new NextResponse("failed", {status: 500})
+  }
 
   // It returns client secret (used to complete a payment from your frontend)
   // ENABLE TLS!!!!!!!!
